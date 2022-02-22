@@ -1,0 +1,37 @@
+.list {
+  width: 100%;
+  padding: 0 0 0 50px;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+.list-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: rgb(245, 239, 232);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list-item:hover {
+  background-color: rgb(231, 185, 85);
+}
+
+.list-item:active {
+  background-color: rgb(245, 239, 232);
+}
+
+.title {
+  width: 100%;
+  margin: 0 0 20px 0;
+}
+
+.score {
+  width: 100%;
+  margin: 0 0 10px 0;
+  text-align: right;
+}
