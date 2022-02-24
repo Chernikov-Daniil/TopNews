@@ -1,5 +1,6 @@
 import { REQUEST_STATUS } from "../../utils/constants";
 import {
+  CLEAR_NEWS,
   GET_NEWS_FAILURE,
   GET_NEWS_REQUEST,
   GET_NEWS_SUCCESS,
@@ -37,6 +38,15 @@ export const newsReducer = (state = initialState, action) => {
         request: {
           error: "",
           status: REQUEST_STATUS.SUCCESS,
+        },
+      };
+    case CLEAR_NEWS:
+      return {
+        ...state,
+        data: [],
+        request: {
+          error: "",
+          status: REQUEST_STATUS.IDLE,
         },
       };
     default:

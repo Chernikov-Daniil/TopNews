@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNews } from "../../store/news/actions";
+import { clearNews, getNews } from "../../store/news/actions";
 import {
   selectErrorMessage,
   selectIsError,
@@ -10,12 +10,13 @@ import {
 import "./news.css";
 
 export const News = () => {
+  const [count, setCount] = useState(0);
+
   const news = useSelector(selectNews);
   const errorMsg = useSelector(selectErrorMessage);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
 
   const newsDate = (date) => {
     const getDate = new Date(date * 1000).toUTCString();
@@ -23,10 +24,21 @@ export const News = () => {
   };
 
   useEffect(() => {
+    let interval;
     dispatch(getNews());
-  }, []);
+    interval = setInterval(() => {
+      dispatch(clearNews());
+      setCount((prevCount) => prevCount + 1);
+    }, 60000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [count]);
 
-  const handleRefresh = () => {};
+  const handleRefresh = () => {
+    dispatch(clearNews());
+    setCount((prevCount) => prevCount + 1);
+  };
 
   return (
     <>
